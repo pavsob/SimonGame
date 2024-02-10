@@ -55,7 +55,7 @@ function computerTurn() {
 function restartGame() {
     $("body").removeClass("game-over");
     $(".btn").show();
-    $("h1").text("Press A Key to Start");
+    $("h1").text("Press A Key to Start or Click Here");
     gameStarted = false;
     currentLevel = 0;
     gamePattern = [];
@@ -76,10 +76,10 @@ $(".btn").click(function(event) {
         if ( !arraysAreEqual(userClickedPattern, gamePattern) ) {
             $("body").addClass("game-over");
             $(".btn").hide(1000);
-            $("h1").text("GAME OVER!")
+            $("h1").text("GAME OVER! Score: " + currentLevel)
             setTimeout(function() {
                 restartGame();
-            }, 2000);
+            }, 3500);
             return;
         }
         userClickedPattern = [];
@@ -95,3 +95,8 @@ $("body").keydown(function(event) {
         computerTurn();
     }
 });
+
+$("h1").click(function() {
+    gameStarted = true;
+    computerTurn();
+})
